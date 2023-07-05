@@ -1,0 +1,26 @@
+﻿@model ExpenceManager.Models.Entity.TBLCALISANLAR
+@{
+    ViewBag.Title = "BringEmployee";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Employee", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.CALISANID)
+        @Html.TextBoxFor(m => m.CALISANID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.CALISANAD)
+        @Html.TextBoxFor(m => m.CALISANAD, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.CALISANSOYAD)
+        @Html.TextBoxFor(m => m.CALISANSOYAD, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.CALISANBILGI)
+        @Html.TextBoxFor(m => m.CALISANBILGI, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning">Employee Update</button>
+    </div>
+}
+

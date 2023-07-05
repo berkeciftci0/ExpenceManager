@@ -1,0 +1,41 @@
+﻿@model ExpenceManager.Models.Entity.TBLKATEGORILER
+@{
+    ViewBag.Title = "NewCattegory";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @*<div>
+            <label>Kategori Adı</label>
+            <input type="text" class="form-control" name="KATEGORIAD" />
+        </div>*@
+
+    <div>
+        <label>Category Name</label>
+        @Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.KATEGORIAD, "", new { @style = "color:red" })
+
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">
+            Add Category
+        </button>
+    </div>
+</form>
+
+
+
+
+
+
+@*
+    <form class="form-group" method="post">
+        <div>
+            <label>Cattegory Name</label>
+            <input type="text" class="form-control" name="KATEGORIAD" />
+        </div>
+        <div>
+            <br />
+            <button class="btn btn-info">Add Cattegory</button>
+        </div>
+    </form>*@

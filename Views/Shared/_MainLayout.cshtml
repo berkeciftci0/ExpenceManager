@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Expence Manager</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    @*<header>
+                <img src="~/logo/logomak_logo.png" height="90px" width="200px" />
+            </a>
+        </header>*@
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Expence Manager</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/Cattegory/Index">Categories</a></li> @*Kategoriler Kısmı*@
+                <li><a href="/Employee/Index">Employees</a></li>  @*Çalışanlar Kısmı*@
+                <li><a href="/Expens/Index">Expenses</a></li>   @*Masraflar Kısmı*@
+                <li><a href="/Confirmation/Index">Confirmations</a></li>  @*Onaylamalar Kısmı*@
+                <li><a href="/About/Index">Project About</a></li>  @*Proje Hakkında Bilgilendirme Kısmı*@
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        @RenderBody()
+        @RenderSection("scripts", required: false)
+
+    </div>
+
+</body>
+</html>

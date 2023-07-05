@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MvcDbMasrafModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBLCALISANLAR">
+          <Key>
+            <PropertyRef Name="CALISANID" />
+          </Key>
+          <Property Name="CALISANID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CALISANAD" Type="varchar" MaxLength="50" />
+          <Property Name="CALISANSOYAD" Type="varchar" MaxLength="50" />
+          <Property Name="CALISANBILGI" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLKATEGORILER">
+          <Key>
+            <PropertyRef Name="KATEGORIID" />
+          </Key>
+          <Property Name="KATEGORIID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KATEGORIAD" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLMASRAFLAR">
+          <Key>
+            <PropertyRef Name="MASRAFID" />
+          </Key>
+          <Property Name="MASRAFID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CALISANAD" Type="varchar" MaxLength="50" />
+          <Property Name="KATEGORI" Type="smallint" />
+          <Property Name="FIYAT" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLONAYLAR">
+          <Key>
+            <PropertyRef Name="ONAYID" />
+          </Key>
+          <Property Name="ONAYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CALISAN" Type="int" />
+          <Property Name="FIYAT" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KATEGORI" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_TBLMASRAFLAR_TBLKATEGORILER">
+          <End Role="TBLKATEGORILER" Type="Self.TBLKATEGORILER" Multiplicity="0..1" />
+          <End Role="TBLMASRAFLAR" Type="Self.TBLMASRAFLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKATEGORILER">
+              <PropertyRef Name="KATEGORIID" />
+            </Principal>
+            <Dependent Role="TBLMASRAFLAR">
+              <PropertyRef Name="KATEGORI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLONAYLAR_TBLCALISANLAR">
+          <End Role="TBLCALISANLAR" Type="Self.TBLCALISANLAR" Multiplicity="0..1" />
+          <End Role="TBLONAYLAR" Type="Self.TBLONAYLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCALISANLAR">
+              <PropertyRef Name="CALISANID" />
+            </Principal>
+            <Dependent Role="TBLONAYLAR">
+              <PropertyRef Name="CALISAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MvcDbMasrafModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLCALISANLAR" EntityType="Self.TBLCALISANLAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLKATEGORILER" EntityType="Self.TBLKATEGORILER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLMASRAFLAR" EntityType="Self.TBLMASRAFLAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLONAYLAR" EntityType="Self.TBLONAYLAR" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLMASRAFLAR_TBLKATEGORILER" Association="Self.FK_TBLMASRAFLAR_TBLKATEGORILER">
+            <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
+            <End Role="TBLMASRAFLAR" EntitySet="TBLMASRAFLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLONAYLAR_TBLCALISANLAR" Association="Self.FK_TBLONAYLAR_TBLCALISANLAR">
+            <End Role="TBLCALISANLAR" EntitySet="TBLCALISANLAR" />
+            <End Role="TBLONAYLAR" EntitySet="TBLONAYLAR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MvcDbMasrafModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBLCALISANLAR">
+          <Key>
+            <PropertyRef Name="CALISANID" />
+          </Key>
+          <Property Name="CALISANID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CALISANAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CALISANSOYAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CALISANBILGI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLONAYLAR" Relationship="Self.FK_TBLONAYLAR_TBLCALISANLAR" FromRole="TBLCALISANLAR" ToRole="TBLONAYLAR" />
+        </EntityType>
+        <EntityType Name="TBLKATEGORILER">
+          <Key>
+            <PropertyRef Name="KATEGORIID" />
+          </Key>
+          <Property Name="KATEGORIID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KATEGORIAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLMASRAFLAR" Relationship="Self.FK_TBLMASRAFLAR_TBLKATEGORILER" FromRole="TBLKATEGORILER" ToRole="TBLMASRAFLAR" />
+        </EntityType>
+        <EntityType Name="TBLMASRAFLAR">
+          <Key>
+            <PropertyRef Name="MASRAFID" />
+          </Key>
+          <Property Name="MASRAFID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CALISANAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KATEGORI" Type="Int16" />
+          <Property Name="FIYAT" Type="Int32" />
+          <NavigationProperty Name="TBLKATEGORILER" Relationship="Self.FK_TBLMASRAFLAR_TBLKATEGORILER" FromRole="TBLMASRAFLAR" ToRole="TBLKATEGORILER" />
+        </EntityType>
+        <EntityType Name="TBLONAYLAR">
+          <Key>
+            <PropertyRef Name="ONAYID" />
+          </Key>
+          <Property Name="ONAYID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CALISAN" Type="Int32" />
+          <Property Name="FIYAT" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KATEGORI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLCALISANLAR" Relationship="Self.FK_TBLONAYLAR_TBLCALISANLAR" FromRole="TBLONAYLAR" ToRole="TBLCALISANLAR" />
+        </EntityType>
+        <Association Name="FK_TBLONAYLAR_TBLCALISANLAR">
+          <End Role="TBLCALISANLAR" Type="Self.TBLCALISANLAR" Multiplicity="0..1" />
+          <End Role="TBLONAYLAR" Type="Self.TBLONAYLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLCALISANLAR">
+              <PropertyRef Name="CALISANID" />
+            </Principal>
+            <Dependent Role="TBLONAYLAR">
+              <PropertyRef Name="CALISAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLMASRAFLAR_TBLKATEGORILER">
+          <End Role="TBLKATEGORILER" Type="Self.TBLKATEGORILER" Multiplicity="0..1" />
+          <End Role="TBLMASRAFLAR" Type="Self.TBLMASRAFLAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLKATEGORILER">
+              <PropertyRef Name="KATEGORIID" />
+            </Principal>
+            <Dependent Role="TBLMASRAFLAR">
+              <PropertyRef Name="KATEGORI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MvcDbMasrafEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TBLCALISANLAR" EntityType="Self.TBLCALISANLAR" />
+          <EntitySet Name="TBLKATEGORILER" EntityType="Self.TBLKATEGORILER" />
+          <EntitySet Name="TBLMASRAFLAR" EntityType="Self.TBLMASRAFLAR" />
+          <EntitySet Name="TBLONAYLAR" EntityType="Self.TBLONAYLAR" />
+          <AssociationSet Name="FK_TBLONAYLAR_TBLCALISANLAR" Association="Self.FK_TBLONAYLAR_TBLCALISANLAR">
+            <End Role="TBLCALISANLAR" EntitySet="TBLCALISANLAR" />
+            <End Role="TBLONAYLAR" EntitySet="TBLONAYLAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLMASRAFLAR_TBLKATEGORILER" Association="Self.FK_TBLMASRAFLAR_TBLKATEGORILER">
+            <End Role="TBLKATEGORILER" EntitySet="TBLKATEGORILER" />
+            <End Role="TBLMASRAFLAR" EntitySet="TBLMASRAFLAR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MvcDbMasrafModelStoreContainer" CdmEntityContainer="MvcDbMasrafEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MvcDbMasrafModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLCALISANLAR">
+            <EntityTypeMapping TypeName="MvcDbMasrafModel.TBLCALISANLAR">
+              <MappingFragment StoreEntitySet="TBLCALISANLAR">
+                <ScalarProperty Name="CALISANID" ColumnName="CALISANID" />
+                <ScalarProperty Name="CALISANAD" ColumnName="CALISANAD" />
+                <ScalarProperty Name="CALISANSOYAD" ColumnName="CALISANSOYAD" />
+                <ScalarProperty Name="CALISANBILGI" ColumnName="CALISANBILGI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLKATEGORILER">
+            <EntityTypeMapping TypeName="MvcDbMasrafModel.TBLKATEGORILER">
+              <MappingFragment StoreEntitySet="TBLKATEGORILER">
+                <ScalarProperty Name="KATEGORIID" ColumnName="KATEGORIID" />
+                <ScalarProperty Name="KATEGORIAD" ColumnName="KATEGORIAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLMASRAFLAR">
+            <EntityTypeMapping TypeName="MvcDbMasrafModel.TBLMASRAFLAR">
+              <MappingFragment StoreEntitySet="TBLMASRAFLAR">
+                <ScalarProperty Name="MASRAFID" ColumnName="MASRAFID" />
+                <ScalarProperty Name="CALISANAD" ColumnName="CALISANAD" />
+                <ScalarProperty Name="KATEGORI" ColumnName="KATEGORI" />
+                <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLONAYLAR">
+            <EntityTypeMapping TypeName="MvcDbMasrafModel.TBLONAYLAR">
+              <MappingFragment StoreEntitySet="TBLONAYLAR">
+                <ScalarProperty Name="ONAYID" ColumnName="ONAYID" />
+                <ScalarProperty Name="CALISAN" ColumnName="CALISAN" />
+                <ScalarProperty Name="FIYAT" ColumnName="FIYAT" />
+                <ScalarProperty Name="KATEGORI" ColumnName="KATEGORI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

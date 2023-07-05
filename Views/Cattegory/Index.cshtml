@@ -1,0 +1,32 @@
+﻿@using ExpenceManager.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLKATEGORILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th class="active">CATEGORY ID</th>
+        <th class="bg-info">CATEGORY NAME</th>
+        <th class="bg-danger">DELETE</th>
+        <th class="bg-success">UPDATE</th>
+    </tr>
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <th>@ktgr.KATEGORIID</th>
+                <td>@ktgr.KATEGORIAD</td>
+                <td><a href="/CATTEGORY/DELETE/@ktgr.KATEGORIID" class="btn btn-danger">DELETE</a></td>
+                <td><a href="/CATTEGORY/LISTCATEGORIES/@ktgr.KATEGORIID" class="btn btn-success" style="margin-bottom:2px">UPDATE</a></td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+<a href="/CATTEGORY/NewCattegory/" class="btn btn-primary">ADD NEW CATEGORY</a> 

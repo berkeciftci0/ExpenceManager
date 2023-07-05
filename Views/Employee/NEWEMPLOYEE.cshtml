@@ -1,0 +1,89 @@
+﻿@model ExpenceManager.Models.Entity.TBLCALISANLAR
+@{
+    ViewBag.Title = "NEWEMPLOYEE";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<h1>Add Employee</h1>
+
+<form method="post" class="form-group">
+    <div>
+        <label>Employee Name</label>
+        @Html.TextBoxFor(m => m.CALISANAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CALISANAD, "", new { @style = "color:red" })
+    </div>
+    <div>
+        <label>Employee Surname</label>
+        <input type="text" class="form-control" name="CALISANSOYAD" />
+    </div>
+    <div>
+        <label>Information</label>
+        <input type="text" class="form-control" name="CALISANBILGI" />
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn1">Add Employee</button>
+    </div>
+    <script>
+        $('#btn1').click(function () {
+            alert('Employee Addition Process Has Been Done...!');
+        });
+    </script>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+@*
+    <div class="form-style-5">
+        <form asp-action="AddPersonel" method="post">
+            <fieldset>
+
+                <label for="text">Personal Name:</label>
+                <input type="text" name="PersonalNameSurname" value="@(Model?.PersonalNameSurname)" placeholder="">
+
+                <label for="text">Personal Age:</label>
+                <input type="text" name="PersonalAge" value="@(Model?.PersonalAge)" placeholder="">
+
+                <label for="text">Personal Gender:</label>
+                <select id="text" name="PersonalGender">
+                    <optgroup label="*">
+                        <option value="Erkek">Erkek</option>
+                        <option value="Kadın">Kadın</option>
+                    </optgroup>
+                </select>
+                <label for="text">Personal Department:</label>
+                <select id="text" name="PersonalDepartment">
+                    <optgroup label="*">
+                        <option value="IT">IT</option>
+                        <option value="FrontEnd Developer">FrontEnd Developer</option>
+                        <option value="BackEnd Developer">BackEnd Developer</option>
+                        <option value="Sales And Management">Sales And Management</option>
+                        <option value="General Manager">General Manager</option>
+                        <option value="Director">Director</option>
+                        <option value="Business Analyst">Business Analyst</option>
+                    </optgroup>
+                </select>
+
+                <label for="text">Computer Brand:</label>
+                <select id="text" name="Computer.ComputerSerialNo">
+
+                    <option>@(Model?.Computer.ComputerSerialNo)</option>
+
+                    <label for="text">Personal Mail:</label>
+                    <input type="text" name="PersonalMail" value="@(Model?.PersonalMail)" placeholder="">
+
+                    <label for="text">Personal Phone:</label>
+                    <input type="text" name="PersonalCellPhoneNumber" value="@(Model?.PersonalCellPhoneNumber)" placeholder="">
+
+            </fieldset>
+
+            <input type="submit" value="Add Personal" />
+        </form>
+    </div>
+*@

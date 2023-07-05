@@ -1,0 +1,96 @@
+﻿@model ExpenceManager.Models.Entity.TBLONAYLAR
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Confirmation Pages</h2>
+<br />
+<style>
+    .approval-screen {
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        padding: 20px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+        .approval-screen h2 {
+            color: #ff0000;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .approval-screen h3 {
+            color: #00aaff;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .approval-screen p {
+            margin-bottom: 10px;
+        }
+
+        .approval-screen strong {
+            color: #00cc00;
+        }
+</style>
+
+<div class="approval-screen">
+    <h2>Approval Screen:</h2>
+    <p>On this screen, you are requested to approve a specific action or process. Please review the following information carefully and click the 'Approve' button to provide your consent.</p>
+
+    <h3>Action: [Action Name or Description]</h3>
+    <p>Details: [Details or information related to the action]</p>
+    <p>Approver: [Your Name or Username]</p>
+    <p>Approval Date: [Approval date or day/month/year format]</p>
+
+    <p>By clicking the <strong>Approve</strong> button, the specified action will be executed, and the relevant changes will take effect. To retract your approval or cancel the action, please use the 'Cancel' button.</p>
+
+    <p>Note: Ensure that you have thoroughly reviewed the action and are willing to provide your approval. Once approved, the changes made cannot be undone and may have permanent effects.</p>
+
+    <p>You can proceed by using the approval screen to confirm the action. If you have any questions or concerns, please consult with the appropriate authorities.</p>
+</div>
+
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Confirm
+</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirmation Screen</h2>
+            </div>
+            <form method="post" action="/Confirmation/YeniOnay">
+                <div class="modal-body">
+                    <label>
+                        Employee Name
+                    </label>
+                    @Html.TextBoxFor(m => m.CALISAN, new { @class = "form-control" })
+                    <br />
+                    <label>
+                        Fee Payable
+                    </label>
+                    @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+                    <br />
+                    <label>
+                        Category
+                    </label>
+                    @Html.TextBoxFor(m => m.KATEGORI, new { @class = "form-control" })
+                    <br />
+                    @*<label>
+                            Fiyat
+                        </label>
+                        @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+                        <br />*@
+                    <button type="submit" class="btn btn-info">Make the Confirmation Process</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

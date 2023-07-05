@@ -1,0 +1,28 @@
+﻿@model ExpenceManager.Models.Entity.TBLMASRAFLAR
+@{
+    ViewBag.Title = "bringExpense";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Expens", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.MASRAFID)
+        @Html.TextBoxFor(m => m.MASRAFID, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.CALISANAD)
+        @Html.TextBoxFor(m => m.CALISANAD, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.KATEGORI)
+        @Html.DropDownListFor(m => m.TBLKATEGORILER.KATEGORIID, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+        @*@Html.TextBoxFor(m => m.KATEGORI, new { @class = "form-control" })*@
+        <br />
+        @Html.LabelFor(m => m.FIYAT)
+        @Html.TextBoxFor(m => m.FIYAT, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning">Expens Update</button>
+    </div>
+}
+
+

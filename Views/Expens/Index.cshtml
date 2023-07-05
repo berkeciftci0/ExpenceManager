@@ -1,0 +1,60 @@
+﻿@using ExpenceManager.Models.Entity
+@model List<TBLMASRAFLAR>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="active">ID</th>
+            <th class="info">EMPLOYEE NAME</th>
+            <th class="danger">CATEGORY</th>
+            <th class="success">PRICE</th>
+            <th class="danger">DELETE</th>
+            <th class="success">UPDATE</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var msrf in Model)
+        {
+            <tr>
+                <th>@msrf.MASRAFID</th>
+                <th>@msrf.CALISANAD</th>
+                @*Buraya da alt satırdaki gibi çalışan adını seçtir ekle
+                    <td>@msrf.TBLKATEGORILER.KATEGORIAD</td>*@
+                @if (msrf != null && msrf.TBLKATEGORILER != null)
+                {
+                    <td>@msrf.TBLKATEGORILER.KATEGORIAD</td>
+                }
+                else
+                {
+                    <td>Nesne yok</td>
+                    <!-- Varsa alternatif bir değer kullanabilirsiniz -->
+                }
+
+                <th>@msrf.FIYAT</th>
+                <td><a href="/EXPENS/SIL/@msrf.MASRAFID" class="btn btn-danger">DELETE</a></td>
+                <td><a href="/EXPENS/bringExpense/@msrf.MASRAFID" class="btn btn-success">UPDATE</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/EXPENS/NEWEXPENS/" class="btn btn-primary">ADD NEW EXPENS</a>
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $('#tbl1').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+
+
+
+</script>

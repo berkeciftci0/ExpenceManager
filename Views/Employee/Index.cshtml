@@ -1,0 +1,45 @@
+﻿@using ExpenceManager.Models.Entity
+@model List<TBLCALISANLAR>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Employee", FormMethod.Get))
+{
+    <p>
+        <b>Employee Name To Search:</b> @Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th class="active">ID</th>
+        <th class="bg-info">EMPLOYEE NAME</th>
+        <th class="warning">EMPLOYEE SURNAME</th>
+        <th class="active">INFORMATION</th>
+        <th class="danger">DELETE</th>
+        <th class="success">UPDATE</th>
+        
+
+    </tr>
+
+    <tbody>
+        @foreach (var cal in Model)
+        {
+            <tr>
+                <th>@cal.CALISANID</th>
+                <td>@cal.CALISANAD</td>
+                <td>@cal.CALISANSOYAD</td>
+                <td>@cal.CALISANBILGI</td>
+                @*<td><a href="/EMPLOYEE/SIL/@cal.CALISANID" class="btn btn-danger">SİL</a></td>*@
+                <td>@Html.ActionLink("DELETE", "SIL", new { id = cal.CALISANID }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz? ')" })</td>
+                <td><a href="/EMPLOYEE/BringEmployee/@cal.CALISANID" class="btn btn-success">Update</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/EMPLOYEE/NEWEMPLOYEE" class="btn btn-primary">ADD NEW EMPLOYEE</a>
+
